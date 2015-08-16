@@ -1,0 +1,25 @@
+#{extends 'main.html' /}
+<meta charset="utf-8" />
+
+<h1 class="page-header">Добавить новость</h1>
+    
+<form action="@{NewsController.save()}" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <div class="row">
+            <div class="col-xs-6">
+                <label class="control-label">Заголовок</label>
+                <input type="text" class="form-control" value="${news.title}" name="news.title" />
+            </div>
+        </div>
+        <input type="hidden" value="${news.imagePath}" name="news.imagePath">
+    </div>
+
+    
+
+    <div class="form-group">
+        <label class="control-label">Содержимое</label>
+        <textarea class="form-control" value="${news.body}" name="news.body" rows="8"></textarea>
+    </div>
+    
+    <button type="submit" class="btn btn-default">Сохранить</button>
+</form>

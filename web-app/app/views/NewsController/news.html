@@ -1,0 +1,91 @@
+#{extends 'main.html' /}
+<meta charset="utf-8" />
+
+<h1 class="page-header">Все новости</h1>
+
+<div class="row">
+	<div class="col-xs-6 col-sm-3 placeholder">
+		<a href="@{NewsController.add()}">
+			<button type="button" class="btn btn-success" data-dismiss="modal">
+				<span class="glyphicon glyphicon-plus"></span> Добавить
+			</button>
+		</a>
+	</div>
+</div>
+<h2 class="sub-header">Новости</h2>
+<div class="table-responsive">
+	<table class="table table-striped" width="100%">
+		<thead>
+			<tr>
+				<th width="5%">id</th>
+				<th width="20%">Заголовок</th>
+				<th width="50%">Содержимое</th>
+				<th width="15%">Дата публикации</th>
+				<th width="10%">Изменить</th>
+			</tr>
+		</thead>
+		<tbody>
+			#{list items:news, as:'news'}
+			<tr>
+				<td>${news.id}</td>
+				<td>${news.title}</td>
+
+				<td>
+					<div class="newsRow">
+						<div class="span4 collapse-group">
+							<p class="collapse">${news.body}</p>
+							<p>
+								<a class="newsBtn" href="#"><button class="btn btn-xs">просмотреть&raquo;</button></a>
+							</p>
+						</div>
+					</div>
+
+				</td>
+
+				<td>${news.createDate}</td>
+				<td>
+					<p>
+						<a href="@{NewsController.edit(news)}"><button
+								class="btn btn-primary btn-xs">Редактировать</button></a>
+					</p>
+					<p>
+						<a href="@{NewsController.delete(news)}">
+							<button class="btn btn-danger btn-xs">Удалить</button>
+						</a>
+						<!--</p> <a href="#my_modal" data-toggle="modal" data-news="${news}">Open
+						Modal</a>-->
+				</td>
+			</tr>
+			#{/list}
+
+
+			<!--  
+			Confirm model
+			<div class="modal" id="my_modal">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">
+								<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+							</button>
+							<h4 class="modal-title">Modal header</h4>
+						</div>
+						<div class="modal-body">
+							<p>some content</p>
+							<input type="text" name="news.id" value="" />
+						</div>
+						<div class="modal-footer">
+							<a href="@{NewsController.delete(news)}">
+								<button type="button" class="btn btn-default" data-dismiss="modal">ok</button>
+							</a>
+							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			-->
+
+
+		</tbody>
+	</table>
+</div>
