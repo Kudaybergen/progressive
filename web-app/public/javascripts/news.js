@@ -10,3 +10,7 @@ $('.newsRow .newsBtn').on('click', function(e) {
 //    var news = $(e.relatedTarget).data('news');
 //    $(e.currentTarget).find('input[name="news"]').val(news);
 //});
+$("#pop").on("click", function() {
+	   $('#imagepreview').attr('src', $('#imageresource').attr('src'));
+	   $('#imagemodal').modal('show');
+	});

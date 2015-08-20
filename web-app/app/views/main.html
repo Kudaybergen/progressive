@@ -8,8 +8,10 @@
         <link rel="stylesheet" media="screen" href="@{'/public/stylesheets/main.css'}">
         #{get 'moreStyles' /}
         <link rel="shortcut icon" type="image/png" href="@{'/public/images/favicon.png'}">
+        <link href="@{'/public/css/fileinput.css'}" rel="stylesheet">
         <link href="@{'/public/css/bootstrap.min.css'}" rel="stylesheet">
         <link href="@{'/public/stylesheets/dashboard.css'}" rel="stylesheet">
+        
     </head>
     <body>
 
@@ -69,6 +71,7 @@
 		
         <script src="@{'/public/javascripts/jquery-1.11.3.min.js'}" type="text/javascript" charset="${_response_encoding}"></script>
         <script src="@{'/public/js/bootstrap.min.js'}"></script>
+        <script src="@{'/public/js/fileinput.js'}"></script>
 		<script src="@{'/public/javascripts/news.js'}" type="text/javascript" charset="${_response_encoding}"></script>
         #{get 'moreScripts' /}
     </body>
