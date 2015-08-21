@@ -9,6 +9,7 @@
         #{get 'moreStyles' /}
         <link rel="shortcut icon" type="image/png" href="@{'/public/images/favicon.png'}">
         <link href="@{'/public/css/fileinput.css'}" rel="stylesheet">
+        <link href="@{'/public/css/bootstrap-markdown.min.css'}" rel="stylesheet">
         <link href="@{'/public/css/bootstrap.min.css'}" rel="stylesheet">
         <link href="@{'/public/stylesheets/dashboard.css'}" rel="stylesheet">
         
@@ -51,7 +52,7 @@
             </ul>
             <ul class="nav nav-sidebar">
                 <li><a href="@{NewsController.news()}">Новости</a></li>
-                <li><a href="">Nav item again</a></li>
+                <li><a href="@{InfoController.about()}">Информация</a></li>
                 <li><a href="">One more nav</a></li>
                 <li><a href="">Another nav item</a></li>
                 <li><a href="">More navigation</a></li>
@@ -72,6 +73,10 @@
         <script src="@{'/public/javascripts/jquery-1.11.3.min.js'}" type="text/javascript" charset="${_response_encoding}"></script>
         <script src="@{'/public/js/bootstrap.min.js'}"></script>
         <script src="@{'/public/js/fileinput.js'}"></script>
+        <script src="@{'/public/js/text-editor/bootstrap-markdown.js'}"></script>
+        <script src="@{'/public/js/text-editor/markdown.js'}"></script>
+        <script src="@{'/public/js/text-editor/to-markdown.js'}"></script>
+        <script src="@{'/public/js/text-editor/info.js'}" type="text/javascript" charset="${_response_encoding}"></script>
 		<script src="@{'/public/javascripts/news.js'}" type="text/javascript" charset="${_response_encoding}"></script>
         #{get 'moreScripts' /}
     </body>

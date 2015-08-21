@@ -1,0 +1,78 @@
+#{extends 'main.html' /}
+<meta charset="utf-8" />
+
+
+<div class="bs-example">
+	<ul class="nav nav-tabs">
+		<li class="active"><a data-toggle="tab" href="#sectionA">О Нас</a></li>
+		<li><a data-toggle="tab" href="#sectionB">FAQ</a></li>
+		<li><a data-toggle="tab" href="#sectionC">Контакты</a></li>
+	</ul>
+	<div class="tab-content">
+	<br/>
+		<div id="sectionA" class="tab-pane fade in active">
+			<form  action="@{InfoController.saveInfo()}" method="post">
+				<div class="form-group">
+				<input type="hidden" value="${info.id}" name="info.id">
+				<input type="hidden" value="${info.info_type}" name="info.info_type">
+					<div class="row">
+						<div class="col-xs-6">
+						 <input type="text"
+								class="form-control" value="${info.title}" name="info.title" placeholder="Заголовок" />
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-12">
+							<textarea name="info.content" data-provide="markdown" rows="10">${info.content}</textarea>
+						</div>
+					</div>
+					<hr />
+					<button type="submit" class="btn">Сохранить</button>
+				</div>
+			</form>
+
+		</div>
+		<div id="sectionB" class="tab-pane fade">
+			<form  action="@{InfoController.saveFaq()}" method="post">
+				<div class="form-group">
+				<input type="hidden" value="${faq.id}" name="faq.id">
+				<input type="hidden" value="${faq.info_type}" name="faq.info_type">
+					<div class="row">
+						<div class="col-xs-6">
+						<input type="text"
+								class="form-control" value="${faq.title}" name="faq.title" placeholder="Заголовок" />
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-12">
+							<textarea name="faq.content" data-provide="markdown" rows="10">${faq.content}</textarea>
+						</div>
+					</div>
+					<hr />
+					<button type="submit" class="btn">Сохранить</button>
+				</div>
+			</form>
+		</div>
+		<div id="sectionC" class="tab-pane fade">
+			<form  action="@{InfoController.saveContacts()}" method="post">
+				<div class="form-group">
+				<input type="hidden" value="${contacts.id}" name="contacts.id">
+				<input type="hidden" value="${contacts.info_type}" name="contacts.info_type">
+					<div class="row">
+						<div class="col-xs-6">
+						<input type="text"
+								class="form-control" value="${contacts.title}" name="contacts.title" placeholder="Заголовок" />
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-12">
+							<textarea name="contacts.content" data-provide="markdown" rows="10">${contacts.content}</textarea>
+						</div>
+					</div>
+					<hr />
+					<button type="submit" class="btn">Сохранить</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
