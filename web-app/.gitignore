@@ -14,6 +14,7 @@ server.pid
 *.iml
 *.eml
 /dist/
+/conf/dev.conf
 .cache
 .classpath
 .project

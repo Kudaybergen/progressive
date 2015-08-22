@@ -35,7 +35,7 @@ public class NewsController extends Controller {
 				String name = String.format("%s.%s", RandomStringUtils.randomAlphanumeric(8), "jpg");
 				FileUtils.moveFile(img, new File(path, name));
 				String appPath = Play.applicationPath.getAbsolutePath();
-				news.imagePath = appPath + "/" + path + "/" + name;
+				news.imagePath = name;
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -48,8 +48,8 @@ public class NewsController extends Controller {
 
 	public static void showImage(Long newsId) {
 		 News news = News.findById(newsId);
-//		 String path = Play.configuration.getProperty("progressive.images.path");
-		 File file = new File(news.imagePath);
+		 String path = Play.configuration.getProperty("progressive.images.path");
+		 File file = new File(path+"/"+news.imagePath);
 		 renderBinary(file);
 	}
 	
