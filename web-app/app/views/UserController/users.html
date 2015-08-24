@@ -1,0 +1,56 @@
+#{extends 'main.html' /}
+<meta charset="utf-8" />
+
+<h1 class="page-header">Все пользователи</h1>
+
+<div class="row">
+	<div class="col-xs-6 col-sm-3 placeholder">
+		<a href="@{UserController.add()}">
+			<button type="button" class="btn btn-success" data-dismiss="modal">
+				<span class="glyphicon glyphicon-plus"></span> Добавить
+			</button>
+		</a>
+	</div>
+</div>
+<h2 class="sub-header">Новости</h2>
+<div class="table-responsive">
+	<table class="table table-striped" width="100%">
+		<thead>
+			<tr>
+				<th width="5%">id</th>
+				<th width="20%">Имя</th>
+				<th width="30%">Фамилия</th>
+				<th width="15%">Телефон</th>
+				<th width="15%">Почта</th>
+				<th width="15%">Роль</th>
+			</tr>
+		</thead>
+		<tbody>
+			#{list items:users, as:'user'}
+			<tr>
+				<td>${user.id}</td>
+				<td>${user.firstName}</td>
+				<td>${user.lastName}</td>
+				<td>${user.phone}</td>
+				<td>${user.email}</td>
+				<td>${user.role}</td>
+
+				<td>${user.createDate}</td>
+				<td>
+					<p>
+						<a href="@{UserController.add(user)}"><button
+								class="btn btn-primary btn-xs">Редактировать</button></a>
+					</p>
+					<p>
+						<a href="@{UserController.delete(user)}">
+							<button class="btn btn-danger btn-xs">Удалить</button>
+						</a>
+						<!--</p> <a href="#my_modal" data-toggle="modal" data-news="${news}">Open
+						Modal</a>-->
+				</td>
+			</tr>
+			#{/list}
+
+		</tbody>
+	</table>
+</div>

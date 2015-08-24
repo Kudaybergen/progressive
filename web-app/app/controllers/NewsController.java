@@ -34,7 +34,6 @@ public class NewsController extends Controller {
 				FileUtil.forceDelete(new File(path + news.imagePath));
 				String name = String.format("%s.%s", RandomStringUtils.randomAlphanumeric(8), "jpg");
 				FileUtils.moveFile(img, new File(path, name));
-				String appPath = Play.applicationPath.getAbsolutePath();
 				news.imagePath = name;
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
@@ -54,7 +53,6 @@ public class NewsController extends Controller {
 	}
 	
 	public static void delete(News news){
-		System.out.println("delete");
 		news.delete();
 		news();
 	}
