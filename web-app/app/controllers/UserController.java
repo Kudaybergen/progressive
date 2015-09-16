@@ -20,7 +20,6 @@ public class UserController extends Controller{
 	
 	public static void save(User user){
 		user.save();
-		System.out.println(user.role);
 		users();
 	}
 	
@@ -28,4 +27,5 @@ public class UserController extends Controller{
 		user.delete();
 		users();
 	}
+	
 }

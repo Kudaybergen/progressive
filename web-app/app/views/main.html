@@ -11,7 +11,9 @@
         <link href="@{'/public/css/fileinput.css'}" rel="stylesheet">
         <link href="@{'/public/css/bootstrap-markdown.min.css'}" rel="stylesheet">
         <link href="@{'/public/css/bootstrap.min.css'}" rel="stylesheet">
+        <link href="@{'/public/css/jquery.tokenize.css'}" rel="stylesheet">
         <link href="@{'/public/stylesheets/dashboard.css'}" rel="stylesheet">
+        <link href="@{'/public/stylesheets/jquery-ui.css'}" rel="stylesheet">
         
     </head>
     <body>
@@ -54,7 +56,7 @@
                 <li><a href="@{NewsController.news()}">Новости</a></li>
                 <li><a href="@{InfoController.about()}">Информация</a></li>
                 <li><a href="@{UserController.users()}">Пользователи</a></li>
-                <li><a href="">Another nav item</a></li>
+                <li><a href="@{GroupController.groups()}">Группы</a></li>
                 <li><a href="">More navigation</a></li>
             </ul>
             <ul class="nav nav-sidebar">
@@ -76,9 +78,14 @@
         <script src="@{'/public/js/text-editor/bootstrap-markdown.js'}"></script>
         <script src="@{'/public/js/text-editor/markdown.js'}"></script>
         <script src="@{'/public/js/text-editor/to-markdown.js'}"></script>
+        <script src="@{'/public/js/jquery-ui.js'}"></script>
+        <script src="@{'/public/js/jquery.tokenize.js'}"></script>
         <script src="@{'/public/js/text-editor/info.js'}" type="text/javascript" charset="${_response_encoding}"></script>
 		<script src="@{'/public/javascripts/news.js'}" type="text/javascript" charset="${_response_encoding}"></script>
+		
+  
         #{get 'moreScripts' /}
+        
     </body>
 </html>
 

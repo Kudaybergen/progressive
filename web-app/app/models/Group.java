@@ -9,14 +9,18 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import play.data.validation.Required;
 
 @Entity
-@Table(name = "prog_users")
-public class User extends AbstractModel {
+@Table(name = "prog_groups")
+public class Group extends AbstractModel {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -24,26 +28,18 @@ public class User extends AbstractModel {
 
 	@Required
 	@Column
-	public String role;
+	public String name;
 
 	@Required
 	@Column
-	public String firstName;
+	public String about;
 
-	@Required
-	@Column
-	public String lastName;
+	@ManyToOne
+	@JoinColumn(name = "teacher_id")
+	public User teacher;
 
-	@Required
-	@Column
-	public String phone;
-
-	@Required
-	@Column
-	public String email;
-
-	@Required
-	@Column
-	public String password;
+	@ManyToMany(cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
+	@JoinTable(name = "students")
+	public List<User> students;
 
 }

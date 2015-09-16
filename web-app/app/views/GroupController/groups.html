@@ -1,0 +1,84 @@
+#{extends 'main.html' /}
+<meta charset="utf-8" />
+
+<h1 class="page-header">Все группы</h1>
+
+<div class="row">
+	<div class="col-xs-6 col-sm-3 placeholder">
+		<a href="@{GroupController.add()}">
+			<button type="button" class="btn btn-success" data-dismiss="modal">
+				<span class="glyphicon glyphicon-plus"></span> Добавить
+			</button>
+		</a>
+	</div>
+</div>
+<h2 class="sub-header">Группы</h2>
+<div class="table-responsive">
+	<table class="table table-striped" width="100%">
+		<thead>
+			<tr>
+				<th width="5%">id</th>
+				<th width="10%">Название</th>
+				<th width="20%">Учитель</th>
+				<th width="50%">Описание</th>
+				<th width="15%">Колличество учеников</th>				
+			</tr>
+		</thead>
+		<tbody>
+			#{list items:groups, as:'group'}
+			<tr>
+				<td>${group.id}</td>
+				<td>${group.name}</td>
+
+				<td>
+					${group.teacher.firstName} ${group.teacher.lastName}
+				</td>
+
+				<td>${group.about}</td>
+				<td>${group.students.size()}</td>
+				<td>
+					<p>
+						<a href="@{GroupController.add(group)}"><button
+								class="btn btn-primary btn-xs">Редактировать</button></a>
+					</p>
+					<p>
+						<a href="@{GroupController.delete(group)}">
+							<button class="btn btn-danger btn-xs">Удалить</button>
+						</a>
+						<!--</p> <a href="#my_modal" data-toggle="modal" data-news="${news}">Open
+						Modal</a>-->
+				</td>
+			</tr>
+			#{/list}
+
+
+			<!--  
+			Confirm model
+			<div class="modal" id="my_modal">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">
+								<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+							</button>
+							<h4 class="modal-title">Modal header</h4>
+						</div>
+						<div class="modal-body">
+							<p>some content</p>
+							<input type="text" name="news.id" value="" />
+						</div>
+						<div class="modal-footer">
+							<a href="@{NewsController.delete(news)}">
+								<button type="button" class="btn btn-default" data-dismiss="modal">ok</button>
+							</a>
+							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			-->
+
+
+		</tbody>
+	</table>
+</div>

@@ -1,0 +1,85 @@
+#{extends 'main.html' /}
+<meta charset="utf-8" />
+
+<h1 class="page-header">Добавить Пользователя</h1>
+    
+<form action="@{GroupController.save()}" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <div class="row">
+            <div class="col-xs-4">
+                <label class="control-label">Название</label>
+                <input type="text" class="form-control" value="${group.name}" name="group.name" />
+            </div>
+            <div class="col-xs-4">
+                <label class="control-label">Описание</label>
+                <input type="text" class="form-control" value="${group.about}" name="group.about" />
+            </div>
+            <div class="col-xs-4">
+                <label class="control-label">Учитель</label>
+                <select class="form-control" id="teachers2" data-style="btn-inverse" name="group.teacher.id">
+				   	#{list items:teachers,as:'teacher'}
+				   		<option value="${teacher.id}">${teacher.firstName} ${teacher.lastName}</option>
+				   	#{/list}
+				</select>
+            </div>
+        </div>
+        <div class="row">
+        	<div class="col-xs-12">
+                <label class="control-label">Ученики</label>
+			</div>
+        </div>
+        <div class="row">
+        	<select id="tokenize" multiple="multiple" class="tokenize-sample" name="group.students.id">
+			   	#{list items:students,as:'student'}
+			   		#{if group.students != null}
+					   	#{if group.students.contains(student)}
+					   		<option value="${student.id}" selected="selected">${student.firstName} ${student.lastName}</option>
+					   	#{/if}
+					   	#{else}
+					   		<option value="${student.id}">${student.firstName} ${student.lastName}</option>
+					   	#{/else}
+					#{/if}
+					#{else}
+						<option value="${student.id}">${student.firstName} ${student.lastName}</option>
+					#{/else}
+			   	#{/list}
+			</select>
+		</div>
+        <input type="hidden" value="${group.id}" name="group.id">
+    </div>
+    
+<!-- <select id="teachers">
+    </select>
+-->    
+    
+    
+
+    <div class="form-group">
+        <div class="row">
+	        <div class="col-xs-1">
+	    		<button type="submit" class="btn btn-success">Сохранить</button>
+	    	</div>
+		    <div class="col-xs-2">
+		    	<a href="@{GroupController.groups()}">
+		    		<button type="button" class="btn btn-danger">Отмена</button>
+				</a>	
+			</div>
+		</div>
+	</div>
+</form>
+#{set 'moreScripts'}
+<script>
+	$(document).ready(function() {
+		$('#tokenize').tokenize({
+			displayDropdownOnFocus:true
+		});
+		$.ajax({url:'@{GroupController.getTeachers()}', method:'get'}).done(function(data) {
+			for (var i in data) {
+				$("#teachers").append("<option value='"+data[i].id+"'>"+data[i].firstName+" "+data[i].lastName+"</option>");
+			}
+			console.log(data);
+		});
+	});
+</script>
+
+#{/set}
