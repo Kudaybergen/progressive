@@ -37,16 +37,15 @@
 		</div>
 	</div>
 </form>
-
-#{if news.imagePath}
-	<a href="@{NewsController.showImage(news.id)}">
-	<img src="@{NewsController.showImage(news.id)}">
-	<button class="btn btn-primary btn-s">Просмотреть изображение</button></a>
-<!-- 	<a href="#" id="pop">
-    	<img id="imageresource" src="${news.imagePath}" style="width: 400px; height: 264px;">
-    	<button class="btn btn-primary btn-s">Просмотреть изображение</button>
-	</a>
-
+<div class="form-group">
+	<div class="row">
+		<div class="col-xs-6">
+			<a href="#" id="pop">
+			    <img id="imageresource" src="@{NewsController.showImage(news.id)}" style="width: 150px;">
+			</a>
+		</div>
+	</div>
+</div>
 <div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -55,7 +54,7 @@
         <h4 class="modal-title" id="myModalLabel">Image preview</h4>
       </div>
       <div class="modal-body">
-        <img src="" id="imagepreview" style="width: 400px; height: 264px;" >
+        <img src="" id="imagepreview" style="width: 500px;" >
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -63,11 +62,3 @@
     </div>
   </div>
 </div>
- -->
-#{/if}
-
-#{set 'moreScripts'}
-	$('ul#second a').imgPreview({
-    imgCSS: { width: 200 }
-});
-#{/set}

@@ -26,8 +26,14 @@ public class EventController extends Controller {
 		render(events);
 	}
 
-	public static void add(Event event) {
+	public static void add(Long id) {
 		List<Group> groups = Group.findAll();
+		Event event = null;
+		if(id != null){
+			event = Event.findById(id);
+		}else{
+			event = new Event();
+		}
 		render(event, groups);
 	}
 
@@ -89,8 +95,8 @@ public class EventController extends Controller {
 		renderBinary(file);
 	}
 
-	public static void delete(Event event) {
-		List<BasicFile> files = event.files;
+	public static void delete(Long id) {
+		Event event = Event.findById(id);
 		event.files.clear();
 		event.delete();
 

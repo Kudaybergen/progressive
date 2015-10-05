@@ -14,3 +14,8 @@ $("#pop").on("click", function() {
 	$('#imagepreview').attr('src', $('#imageresource').attr('src'));
 	$('#imagemodal').modal('show');
 });
+$("#input-2").fileinput({
+    overwriteInitial: false,
+    maxFileSize: 15000,
+    initialCaption: "Файлы"
+});

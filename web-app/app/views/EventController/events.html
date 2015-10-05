@@ -5,7 +5,7 @@
 
 <div class="row">
 	<div class="col-xs-6 col-sm-3 placeholder">
-		<a href="@{EventController.add()}">
+		<a href="@{EventController.add(null)}">
 			<button type="button" class="btn btn-success" data-dismiss="modal">
 				<span class="glyphicon glyphicon-plus"></span> Добавить
 			</button>
@@ -37,15 +37,13 @@
 				<td>${event.createDate}</td>
 				<td>
 					<p>
-						<a href="@{EventController.add(event)}"><button
+						<a href="@{EventController.add(event.id)}"><button
 								class="btn btn-primary btn-xs">Редактировать</button></a>
 					</p>
 					<p>
-						<a href="@{eventController.delete(event)}">
+						<a href="@{EventController.delete(event.id)}">
 							<button class="btn btn-danger btn-xs">Удалить</button>
 						</a>
-						<!--</p> <a href="#my_modal" data-toggle="modal" data-news="${news}">Open
-						Modal</a>-->
 				</td>
 			</tr>
 			#{/list}
