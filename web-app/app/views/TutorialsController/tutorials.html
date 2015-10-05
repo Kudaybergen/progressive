@@ -1,0 +1,52 @@
+#{extends 'main.html' /}
+<meta charset="utf-8" />
+
+<h1 class="page-header">Все Учебное пособие</h1>
+
+<div class="row">
+	<div class="col-xs-6 col-sm-3 placeholder">
+		<a href="@{TutorialsController.add()}">
+			<button type="button" class="btn btn-success" data-dismiss="modal">
+				<span class="glyphicon glyphicon-plus"></span> Добавить
+			</button>
+		</a>
+	</div>
+</div>
+<h2 class="sub-header">Новости</h2>
+<div class="table-responsive">
+	<table class="table table-striped" width="100%">
+		<thead>
+			<tr>
+				<th width="10%">id</th>
+				<th width="30%">Название</th>
+				<th width="35%">Описание</th>
+				<th width="25%">Тема</th>
+			</tr>
+		</thead>
+		<tbody>
+			#{list items:tutorials, as:'tutorial'}
+			<tr>
+				<td>${tutorial.id}</td>
+				<td>${tutorial.name}</td>
+				<td>${tutorial.about}</td>
+				<td>${tutorial.theme}</td>
+
+				<td>${tutorial.createDate}</td>
+				<td>
+					<p>
+						<a href="@{TutorialsController.add(tutorial)}"><button
+								class="btn btn-primary btn-xs">Редактировать</button></a>
+					</p>
+					<p>
+						<a href="@{TutorialsController.delete(tutorial)}">
+							<button class="btn btn-danger btn-xs">Удалить</button>
+						</a>
+						<!--</p> <a href="#my_modal" data-toggle="modal" data-news="${news}">Open
+						Modal</a>-->
+				</td>
+			</tr>
+			#{/list}
+
+		</tbody>
+	</table>
+</div>

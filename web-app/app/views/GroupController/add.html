@@ -1,7 +1,7 @@
 #{extends 'main.html' /}
 <meta charset="utf-8" />
 
-<h1 class="page-header">Добавить Пользователя</h1>
+<h1 class="page-header">Добавить Группу</h1>
     
 <form action="@{GroupController.save()}" method="post" enctype="multipart/form-data">
     <div class="form-group">
@@ -18,7 +18,17 @@
                 <label class="control-label">Учитель</label>
                 <select class="form-control" id="teachers2" data-style="btn-inverse" name="group.teacher.id">
 				   	#{list items:teachers,as:'teacher'}
-				   		<option value="${teacher.id}">${teacher.firstName} ${teacher.lastName}</option>
+				   		#{if group.teacher != null}
+					   		#{if teacher.id == group.teacher.id}
+					   			<option value="${teacher.id}"selected="selected">${teacher.firstName} ${teacher.lastName}</option>
+					   		#{/if}
+					   		#{else}
+					   			<option value="${teacher.id}">${teacher.firstName} ${teacher.lastName}</option>
+					   		#{/else}
+					   	#{/if}
+					   	#{else}
+				   			<option value="${teacher.id}">${teacher.firstName} ${teacher.lastName}</option>
+				   		#{/else}
 				   	#{/list}
 				</select>
             </div>
@@ -29,21 +39,23 @@
 			</div>
         </div>
         <div class="row">
-        	<select id="tokenize" multiple="multiple" class="tokenize-sample" name="group.students.id">
-			   	#{list items:students,as:'student'}
-			   		#{if group.students != null}
-					   	#{if group.students.contains(student)}
-					   		<option value="${student.id}" selected="selected">${student.firstName} ${student.lastName}</option>
-					   	#{/if}
-					   	#{else}
-					   		<option value="${student.id}">${student.firstName} ${student.lastName}</option>
-					   	#{/else}
-					#{/if}
-					#{else}
-						<option value="${student.id}">${student.firstName} ${student.lastName}</option>
-					#{/else}
-			   	#{/list}
-			</select>
+        	<div class="col-xs-12">
+	        	<select id="tokenize" multiple="multiple" class="tokenize-sample" name="group.students.id">
+				   	#{list items:students,as:'student'}
+				   		#{if group.students != null}
+						   	#{if group.students.contains(student)}
+						   		<option value="${student.id}" selected="selected">${student.firstName} ${student.lastName}</option>
+						   	#{/if}
+						   	#{else}
+						   		<option value="${student.id}">${student.firstName} ${student.lastName}</option>
+						   	#{/else}
+						#{/if}
+						#{else}
+							<option value="${student.id}">${student.firstName} ${student.lastName}</option>
+						#{/else}
+				   	#{/list}
+				</select>
+			</div>
 		</div>
         <input type="hidden" value="${group.id}" name="group.id">
     </div>

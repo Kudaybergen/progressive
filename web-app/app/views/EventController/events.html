@@ -1,0 +1,55 @@
+#{extends 'main.html' /}
+<meta charset="utf-8" />
+
+<h1 class="page-header">Досуг и мероприятия</h1>
+
+<div class="row">
+	<div class="col-xs-6 col-sm-3 placeholder">
+		<a href="@{EventController.add()}">
+			<button type="button" class="btn btn-success" data-dismiss="modal">
+				<span class="glyphicon glyphicon-plus"></span> Добавить
+			</button>
+		</a>
+	</div>
+</div>
+<h2 class="sub-header">Мероприятия</h2>
+<div class="table-responsive">
+	<table class="table table-striped" width="100%">
+		<thead>
+			<tr>
+				<th width="10%">id</th>
+				<th width="30%">Название</th>
+				<th width="30%">Описание</th>
+				<th width="35%">Список групп</th>
+			</tr>
+		</thead>
+		<tbody>
+			#{list items:events, as:'event'}
+			<tr>
+				<td>${event.id}</td>
+				<td>${event.name}</td>
+				<td>${event.description}</td>
+				<td>
+					#{list items:event.groups, as:'group'}
+						<p>${group.name}</p>
+					#{/list}
+				</td>
+				<td>${event.createDate}</td>
+				<td>
+					<p>
+						<a href="@{EventController.add(event)}"><button
+								class="btn btn-primary btn-xs">Редактировать</button></a>
+					</p>
+					<p>
+						<a href="@{eventController.delete(event)}">
+							<button class="btn btn-danger btn-xs">Удалить</button>
+						</a>
+						<!--</p> <a href="#my_modal" data-toggle="modal" data-news="${news}">Open
+						Modal</a>-->
+				</td>
+			</tr>
+			#{/list}
+
+		</tbody>
+	</table>
+</div>

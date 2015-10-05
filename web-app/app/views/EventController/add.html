@@ -1,0 +1,151 @@
+#{extends 'main.html' /}
+<meta charset="utf-8" />
+
+<h1 class="page-header">Добавить Учебное пособие</h1>
+    
+<form action="@{EventController.save()}" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <div class="row">
+            <div class="col-xs-6">
+                <label class="control-label">Название</label>
+                <input type="text" class="form-control" value="${event.name}" name="event.name" />
+            </div>
+        </div>
+        <div class="row">
+	        	<div class="col-xs-12">
+	                <label class="control-label">Ученики</label>
+				</div>
+	        </div>
+	        <div class="row">
+	            <div class="col-xs-12">
+		            <select id="tokenize" multiple="multiple" class="tokenize-sample" name="event.groups.id">
+					   	#{list items:groups,as:'group'}
+					   		#{if event.groups != null}
+							   	#{if event.groups.contains(group)}
+							   		<option value="${group.id}" selected="selected">${group.name}</option>
+							   	#{/if}
+							   	#{else}
+							   		<option value="${group.id}">${group.name}</option>
+							   	#{/else}
+							#{/if}
+							#{else}
+								<option value="${group.id}">${group.name}</option>
+							#{/else}
+					   	#{/list}
+					</select>
+				</div>
+			</div>
+        <input type="hidden" value="${event.id}" name="event.id">
+    </div>
+
+    
+
+    <div class="form-group">
+        <label class="control-label">Описание</label>
+        <textarea class="form-control" name="event.description" rows="8">${event.description}</textarea>
+    </div>
+    
+	    <div class="form-group">
+	    	<input id="input-2" type="file" class="file" name="img" value="${img}" multiple data-show-upload="false">
+	    </div>
+	    
+    <div class="form-group">
+        <div class="row">
+	        <div class="col-xs-1">
+	    		<button type="submit" class="btn btn-success">Сохранить</button>
+	    	</div>
+		    <div class="col-xs-2">
+		    	<a href="@{EventController.events()}">
+		    		<button type="button" class="btn btn-danger">Отмена</button>
+				</a>	
+			</div>
+		</div>
+	</div>
+</form>
+
+
+#{if event.files}
+	#{list event.files, as:'file'}
+		#{if file.contentType == "jpg" || file.contentType == "png"}
+			<div class="row">
+				<div class="col-xs-6">
+					<a href="#" id="pop">
+					    <img id="imageresource" src="@{EventController.getFile(file.id)}" style="width: 150px; height: 80px;">
+					</a>
+				</div>
+				<div class="col-xs-2">
+		#{/if}
+		#{elseif file.contentType == "mp4" || file.contentType == "webm"}
+			<div class="row">
+				<div class="col-xs-6">
+					<video width="450" controls>
+					  	<source src="@{EventController.getFile(file.id)}" type="video/mp4">
+					  	<source src="@{EventController.getFile(file.id)}" type="video/mp3">
+					  	<source src="@{EventController.getFile(file.id)}" type="video/ogg">
+					  	 
+					  	<source src="@{EventController.getFile(file.id)}" type=video/webm>
+  						<source src="@{EventController.getFile(file.id)}" type=video/3gp>
+					  	Your browser does not support HTML5 video.
+					</video>
+				</div>
+				<div class="col-xs-2">
+		#{/elseif}
+		#{elseif file.contentType == "mp3"}
+			<div class="row">
+				<div class="col-xs-6">
+					<audio controls>
+					  <source src="@{EventController.getFile(file.id)}" type="audio/mpeg">
+					Your browser does not support the audio element.
+					</audio>
+				</div>
+				<div class="col-xs-2">
+		#{/elseif}
+		#{else}
+			<div class="row">
+				<div class="col-xs-6">
+					<a href="@{EventController.getFile(file.id)}">${file.name}</a>
+				</div>
+				<div class="col-xs-2">
+		#{/else}
+		    		<button type="button" id="MyButton" class="btn btn-danger btn-xs">Удалить</button>	
+				</div>
+			</div>
+	#{/list}
+	
+#{/if}
+
+
+<!-- Creates the bootstrap modal where the image will appear -->
+<div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Image preview</h4>
+      </div>
+      <div class="modal-body">
+        <img src="" id="imagepreview" style="width: 400px; height: 264px;" >
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+#{set 'moreScripts'}
+<script>
+	$(document).ready(function() {
+		$('#tokenize').tokenize({
+			displayDropdownOnFocus:true
+		});
+		$.ajax({url:'@{GroupController.getTeachers()}', method:'get'}).done(function(data) {
+			for (var i in data) {
+				$("#teachers").append("<option value='"+data[i].id+"'>"+data[i].firstName+" "+data[i].lastName+"</option>");
+			}
+			console.log(data);
+		});
+	});
+</script>
+
+#{/set}

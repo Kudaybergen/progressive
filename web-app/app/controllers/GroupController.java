@@ -15,9 +15,6 @@ public class GroupController extends Controller {
 
 	public static void groups() {
 		List<Group> groups = Group.findAll();
-		for (Group g : groups) {
-			System.out.println(g.students.size());
-		}
 		render(groups);
 	}
 
@@ -42,7 +39,6 @@ public class GroupController extends Controller {
 		} else {
 			if (group.students != null) {
 				List<User> students = group.students;
-				System.out.println("students " + students);
 				group.students = null;
 				group.save();
 				group.students = students;

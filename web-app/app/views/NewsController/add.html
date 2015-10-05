@@ -40,6 +40,7 @@
 
 #{if news.imagePath}
 	<a href="@{NewsController.showImage(news.id)}">
+	<img src="@{NewsController.showImage(news.id)}">
 	<button class="btn btn-primary btn-s">Просмотреть изображение</button></a>
 <!-- 	<a href="#" id="pop">
     	<img id="imageresource" src="${news.imagePath}" style="width: 400px; height: 264px;">
@@ -64,3 +65,9 @@
 </div>
  -->
 #{/if}
+
+#{set 'moreScripts'}
+	$('ul#second a').imgPreview({
+    imgCSS: { width: 200 }
+});
+#{/set}
